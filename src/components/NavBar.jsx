@@ -9,7 +9,7 @@ const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Tracks login status
 
   const navitems = [
-    { link: "Dashboard", path: "dashboard" },
+    { link: "Dashboard", path: "" },
     { link: "Projects", path: "projects" },
     { link: "Groups", path: "groups" },
     { link: "Contact Us", path: "contactus" },

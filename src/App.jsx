@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound/NotFound';
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
 import Landing from "./pages/Landing/Landing"
+import Login from './login/login';
+import SignUp from './signup/signup';
 
 const AppLayout = () => (
   <>
@@ -29,7 +31,14 @@ function App() {
           path:"/",
           element:<Landing/>
         },
-        
+        {
+          path:"/login",
+          element:<Login/>
+        },
+        {
+          path:"/signup",
+          element:<SignUp/>
+        },
       ]
     }
   ])
