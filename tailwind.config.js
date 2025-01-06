@@ -10,7 +10,7 @@ export default {
         "text":"#494949",
         "button-color":"#D9D9D9",
         "primary":"#167F71",
-        "forgrount":"#ffff",
+        "forground":"#ffff",
         "bannercolor":"#E6F8DE",
         "red":"#EE4B2B",
         "orange":"#F48C06",
