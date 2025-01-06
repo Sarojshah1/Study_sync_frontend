@@ -42,7 +42,7 @@ const SignUp = () => {
           <div className="flex-1 p-8 flex flex-col justify-center items-center">
             {/* Profile Picture Section */}
             <div className="relative mb-6">
-            <h2 className="text-2xl font-bold text-center mb-8 text-pink-600">
+            <h2 className="text-2xl font-bold text-center mb-8 text-teal-600">
                 Be a member of StudySync
               </h2>
               <div className="relative w-32 h-32 mx-auto">
@@ -53,7 +53,7 @@ const SignUp = () => {
                 />
                 <label
                   htmlFor="profile-picture-input"
-                  className="absolute bottom-1 right-1 bg-pink-500 text-white p-2 rounded-full shadow-lg cursor-pointer"
+                  className="absolute bottom-1 right-1 bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-2 rounded-full shadow-lg cursor-pointer"
                 >
                   <FaEdit className="text-sm" />
                 </label>
@@ -82,6 +82,7 @@ const SignUp = () => {
                   placeholder="John Doe"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
                 />
+                
               </div>
 
               {/* Email */}
@@ -123,7 +124,7 @@ const SignUp = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
               >
                 Sign Up
               </button>
@@ -134,7 +135,7 @@ const SignUp = () => {
               Already have an account?{" "}
               <a
                 href="/login"
-                className="text-pink-500 font-medium hover:underline"
+                className="text-teal-600 font-medium hover:underline"
               >
                 Log In
               </a>
