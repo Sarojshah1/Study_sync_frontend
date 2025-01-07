@@ -1,5 +1,5 @@
 import React from "react";
-import LoginLogo from "../assets/LoginLogo.png";
+import LoginLogo from "../../assets/LoginLogo.png";
 
 const Login = () => {
   return (
@@ -61,7 +61,7 @@ const Login = () => {
                   </label>
                 </div>
                 <a
-                  href="/forgot-password"
+                  href="/forget"
                   className="text-teal-500 text-sm hover:underline"
                 >
                   Forgot your password?
