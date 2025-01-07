@@ -6,14 +6,14 @@ import NotFound from './pages/NotFound/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Landing from './pages/Landing/Landing';
-import Login from './login/login';
+import Login from './pages/login/login';
 import SignUp from './signup/signup';
 import AboutUs from './pages/Landing/AboutUs';
 import Features from './pages/Landing/Features';
 import Pricing from './pages/Landing/Pricing';
 import ContactUs from './pages/Landing/ContactUs';
 import TermsAndPolicies from './signup/TermsAndPolicies';  // Make sure path is correct
-
+import Forget from './pages/forget/forget';
 // Layout Component
 const AppLayout = () => (
     <>
@@ -65,8 +65,12 @@ const routes = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: '/terms-and-policies', // Ensure path matches the SignUp link
+        path: '/terms-and-policies', 
         element: <TermsAndPolicies />,
+      },
+      {
+        path: '/forget', // Ensure path matches the SignUp link
+        element: <Forget/>,
       },
     ],
   },
