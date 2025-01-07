@@ -8,6 +8,10 @@ import Footer from "./components/Footer"
 import Landing from "./pages/Landing/Landing"
 import Login from './login/login';
 import SignUp from './signup/signup';
+import AboutUs  from './pages/Landing/AboutUs';
+import Features from './pages/Landing/Features';
+import Pricing from './pages/Landing/Pricing';
+import ContactUs from './pages/Landing/ContactUs';
 
 const AppLayout = () => (
   <>
@@ -39,6 +43,32 @@ function App() {
           path:"/signup",
           element:<SignUp/>
         },
+
+        {
+          path:"/about",
+          element:<AboutUs/>
+        },
+        
+        {
+          path:"/features",
+          element:<Features/>
+        },
+        
+        {
+          path:"/Subscription",
+          element:<Pricing/>
+        },
+
+        {
+          path:"/contact",
+          element:<ContactUs/>
+        },
+
+        {
+          path:"/contactus",
+          element:<ContactUs/>
+        },
+
       ]
     }
   ])
