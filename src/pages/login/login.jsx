@@ -1,7 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginLogo from "../../assets/LoginLogo.png";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    if (!email.trim() || !password.trim()) {
+      alert("Email and password are required.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // API call for login
+      const response = await fetch("http://localhost:3000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId",data.userId);
+        toast.success("Login successful!");
+
+
+      } else {
+        alert(data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred while logging in. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="relative h-screen bg-white overflow-hidden">
       
@@ -38,6 +83,9 @@ const Login = () => {
                   type="email"
                   placeholder="test@gmail.com"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+
                 />
               </div>
               <div className="mb-6">
@@ -48,6 +96,9 @@ const Login = () => {
                   type="password"
                   placeholder="Enter your password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+
                 />
               </div>
               <div className="flex justify-between items-center mb-6">
@@ -68,10 +119,16 @@ const Login = () => {
                 </a>
               </div>
               <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
+
+                className={`w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+                disabled={loading}
+                onClick={handleLogin}
+
               >
-                Sign In
+                {loading ? "Logging in..." : "Login"}
+
               </button>
             </form>
             <p className="text-gray-600 mt-6">

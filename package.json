@@ -24,6 +24,7 @@
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.2",
     "studysync": "file:",
+    "tostify": "^0.0.1",
     "yup": "^1.6.1"
   },
   "devDependencies": {
