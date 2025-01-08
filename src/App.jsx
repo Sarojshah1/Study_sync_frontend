@@ -12,6 +12,8 @@ import AboutUs  from './pages/Landing/AboutUs';
 import Features from './pages/Landing/Features';
 import Pricing from './pages/Landing/Pricing';
 import ContactUs from './pages/Landing/ContactUs';
+import Groups from './components/navbar/Groupspage';
+import GroupsPage from './components/navbar/Groupspage';
 
 const AppLayout = () => (
   <>
@@ -68,6 +70,13 @@ function App() {
           path:"/contactus",
           element:<ContactUs/>
         },
+
+        {
+          path:"/groups",
+          element:<GroupsPage/>
+        },
+
+
 
       ]
     }
