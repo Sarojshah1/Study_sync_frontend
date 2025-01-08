@@ -12,7 +12,10 @@ import AboutUs from './pages/Landing/AboutUs';
 import Features from './pages/Landing/Features';
 import Pricing from './pages/Landing/Pricing';
 import ContactUs from './pages/Landing/ContactUs';
-import TermsAndPolicies from './signup/TermsAndPolicies';  // Make sure path is correct
+
+import Groups from './components/navbar/Groupspage';
+import GroupsPage from './components/navbar/Groupspage';
+import TermsAndPolicies from './signup/TermsAndPolicies';  
 import Forget from './pages/forget/forget';
 // Layout Component
 const AppLayout = () => (
@@ -29,6 +32,7 @@ const AppLayout = () => (
 
 // QueryClient for React Query
 const queryClient = new QueryClient();
+
 
 // Routes Configuration
 const routes = createBrowserRouter([
@@ -72,9 +76,15 @@ const routes = createBrowserRouter([
         path: '/forget', // Ensure path matches the SignUp link
         element: <Forget/>,
       },
+   {
+          path:"/groups",
+          element:<GroupsPage/>
+        },
+
     ],
   },
 ]);
+
 
 // Main App Component
 function App() {
