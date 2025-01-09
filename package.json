@@ -24,6 +24,7 @@
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.2",
     "studysync": "file:",
+    "tostify": "^0.0.1",
     "yup": "^1.6.1"
   },
   "devDependencies": {
@@ -39,6 +40,6 @@
     "globals": "^15.14.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.0.5"
+    "vite": "^6.0.7"
   }
 }
