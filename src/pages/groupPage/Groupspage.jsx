@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUsers } from "react-icons/fa";
+import axios from "axios"; // Import axios if you're using it
 import 'animate.css';
 
 const GroupsPage = () => {
@@ -10,45 +11,15 @@ const GroupsPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Mock data for channels
-  const mockChannels = [
-    {
-      id: 1,
-      name: "Tech Enthusiasts",
-      description: "Discuss all things tech.",
-      imageUrl: "https://via.placeholder.com/150",
-      createdBy: "Sushant",
-      createdDate: "2025-01-01",
-      members: 2345,
-    },
-    {
-      id: 2,
-      name: "Book Lovers",
-      description: "Share and review your favorite books.",
-      imageUrl: "https://via.placeholder.com/150",
-      createdBy: "Sushant",
-      createdDate: "2025-01-02",
-      members: 1789,
-    },
-    {
-      id: 3,
-      name: "Fitness Freaks",
-      description: "Stay motivated and fit together.",
-      imageUrl: "https://via.placeholder.com/150",
-      createdBy: "Sushant",
-      createdDate: "2025-01-03",
-      members: 3250,
-    },
-  ];
-
   useEffect(() => {
     const fetchChannels = async () => {
       try {
         setLoading(true);
-        setTimeout(() => {
-          setChannels(mockChannels);
-          setLoading(false);
-        }, 1000);
+        
+        const response = await axios.get("http://localhost:3000/api/studyGroup/groups"); 
+        console.log(response.data.groups);
+        setChannels(response.data.groups); 
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching channels:", error);
         setLoading(false);
@@ -56,21 +27,46 @@ const GroupsPage = () => {
     };
 
     const checkUserStatus = () => {
-      const isLoggedIn = localStorage.getItem("userToken");
-      setUserLoggedIn(!!isLoggedIn);
+      const isLoggedIn = localStorage.getItem("token");
+      setUserLoggedIn(!!isLoggedIn); 
 
       if (!isLoggedIn) {
         setShowModal(true);
+      } else {
+        setShowModal(false);
       }
     };
 
     checkUserStatus();
     fetchChannels();
-  }, []);
+  }, [userLoggedIn]);
 
   const closeModal = () => {
     setShowModal(false);
-    navigate("/");
+    navigate("/"); // Redirect to home or login page after closing the modal
+  };
+  const joinGroup = async (groupId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        alert("Please log in to join a group.");
+        return;
+      }
+
+      const response = await axios.post(
+        `http://localhost:3000/api/studyGroup/groups/${groupId}/join`, 
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      
+        alert("Successfully joined the group!");
+      
+    } catch (error) {
+      console.error("Error joining group:", error);
+      alert("There was an error joining the group.");
+    }
   };
 
   return (
@@ -103,31 +99,34 @@ const GroupsPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {channels.map((channel) => (
             <div
-              key={channel.id}
+              key={channel._id}
               className="bg-white shadow-xl rounded-xl p-6 hover:shadow-2xl transition-transform transform hover:scale-105 relative hover:bg-teal-50 animate__animated animate__fadeInUp"
             >
               <img
-  src={channel.imageUrl}
-  alt={channel.name}
-  className="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-teal-500 shadow-lg"
-/>
-              <h2 className="text-2xl font-semibold text-teal-700 mb-4 text-center">{channel.name}</h2>
+                src={`http://localhost:3000/${channel.groupPhoto}`}  
+                alt={channel.group_name}
+                className="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-teal-500 shadow-lg"
+              />
+              <h2 className="text-2xl font-semibold text-teal-700 mb-4 text-center">{channel.group_name}</h2>
               <p className="text-gray-600 text-center mb-6">{channel.description}</p>
 
               <div className="mb-6 text-center">
                 <p className="text-sm text-gray-500">
-                  <strong>Created By:</strong> {channel.createdBy}
+                  <strong>Created By:</strong> {channel.created_by.name}
                 </p>
                 <p className="text-sm text-gray-500">
-                  <strong>Created On:</strong> {new Date(channel.createdDate).toLocaleDateString()}
+                  <strong>Created On:</strong> {new Date(channel.created_at).toLocaleDateString()}
                 </p>
               </div>
 
               <div className="flex items-center justify-center text-gray-500 text-sm mb-6">
-                <FaUsers className="mr-2 text-teal-600" /> {channel.members} Members
+                <FaUsers className="mr-2 text-teal-600" /> {(channel.members).length || 0} Members  
               </div>
 
-              <button className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 w-full mb-4 text-lg font-semibold">
+              <button 
+                className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 w-full mb-4 text-lg font-semibold"
+                onClick={() => joinGroup(channel._id)}  
+              >
                 Join Now
               </button>
 

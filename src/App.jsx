@@ -12,9 +12,7 @@ import AboutUs from './pages/Landing/AboutUs';
 import Features from './pages/Landing/Features';
 import Pricing from './pages/Landing/Pricing';
 import ContactUs from './pages/Landing/ContactUs';
-
-import Groups from './components/navbar/Groupspage';
-import GroupsPage from './components/navbar/Groupspage';
+import GroupsPage from './pages/groupPage/Groupspage';
 import TermsAndPolicies from './signup/TermsAndPolicies';  
 import Forget from './pages/forget/forget';
 // Layout Component
