@@ -15,6 +15,7 @@ import ContactUs from './pages/Landing/ContactUs';
 import GroupsPage from './pages/groupPage/Groupspage';
 import TermsAndPolicies from './signup/TermsAndPolicies';  
 import Forget from './pages/forget/forget';
+import MyGroupsPage from './pages/groupPage/MyGroupsPage';
 // Layout Component
 const AppLayout = () => (
     <>
@@ -77,6 +78,10 @@ const routes = createBrowserRouter([
    {
           path:"/groups",
           element:<GroupsPage/>
+        },
+        {
+          path:"/mygroups",
+          element:<MyGroupsPage/>
         },
 
     ],
