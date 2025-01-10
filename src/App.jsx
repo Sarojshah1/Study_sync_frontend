@@ -16,6 +16,7 @@ import GroupsPage from './pages/groupPage/Groupspage';
 import TermsAndPolicies from './signup/TermsAndPolicies';  
 import Forget from './pages/forget/forget';
 import MyGroupsPage from './pages/groupPage/MyGroupsPage';
+import ProfileSection from './pages/profile/Profile';
 // Layout Component
 const AppLayout = () => (
     <>
@@ -82,6 +83,10 @@ const routes = createBrowserRouter([
         {
           path:"/mygroups",
           element:<MyGroupsPage/>
+        },
+        {
+          path:"/profile",
+          element:<ProfileSection/>
         },
 
     ],

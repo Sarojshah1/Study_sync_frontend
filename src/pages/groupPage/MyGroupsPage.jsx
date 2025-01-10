@@ -23,7 +23,7 @@ const MyGroupsPage = () => {
                 }
 
                 setUserLoggedIn(true);
-                const response = await axios.get("http://localhost:3000/api/studyGroup/groups/user",{}, {
+                const response = await axios.get("http://localhost:3000/api/studyGroup/groups/user", {
                     headers: { Authorization:` Bearer ${token}` }});
                 console.log(response);
 
