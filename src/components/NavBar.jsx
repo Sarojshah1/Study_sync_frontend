@@ -131,31 +131,45 @@ const NavBar = () => {
               <div className="absolute top-14 right-0 mt-4 bg-white border border-gray-200 rounded-lg shadow-lg w-64 z-50">
                 <ul className="text-sm text-gray-700">
                   <li
-                    onClick={() => navigate("/profile")}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                      onClick={() => navigate("/profile")}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
                   >
-                    <FaUser className="w-5 h-5 text-teal-500" />
+                    <FaUser className="w-5 h-5 text-teal-500"/>
                     <span>Profile</span>
                   </li>
                   <li
-                    onClick={() => navigate("/groups")}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                      onClick={() => navigate("/mygroups")}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
                   >
-                    <FaUsers className="w-5 h-5 text-teal-500" />
+                    <FaUsers className="w-5 h-5 text-teal-500"/>
                     <span>Your Groups</span>
                   </li>
                   <li
-                    onClick={() => navigate("/projects")}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                      onClick={() => navigate("/projects")}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
                   >
-                    <FaProjectDiagram className="w-5 h-5 text-teal-500" />
+                    <FaProjectDiagram className="w-5 h-5 text-teal-500"/>
                     <span>Your Projects</span>
                   </li>
                   <li
-                    onClick={handleLogout}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                      onClick={() => navigate("/add-project")}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
                   >
-                    <FaSignOutAlt className="w-5 h-5 text-teal-500" />
+                    <FaProjectDiagram className="w-5 h-5 text-teal-500"/>
+                    <span>Add Project</span>
+                  </li>
+                  <li
+                      onClick={() => navigate("/add-group")}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                  >
+                    <FaUsers className="w-5 h-5 text-teal-500"/>
+                    <span>Add Group</span>
+                  </li>
+                  <li
+                      onClick={handleLogout}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+                  >
+                    <FaSignOutAlt className="w-5 h-5 text-teal-500"/>
                     <span>Logout</span>
                   </li>
                 </ul>
@@ -163,11 +177,11 @@ const NavBar = () => {
             )}
           </div>
         ) : (
-          // Login and Sign Up Buttons (before login)
-          <>
-            <button
-              onClick={() => navigate("/login")}
-              className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition font-medium"
+            // Login and Sign Up Buttons (before login)
+            <>
+              <button
+                  onClick={() => navigate("/login")}
+                  className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition font-medium"
             >
               Login
             </button>

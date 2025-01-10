@@ -5,6 +5,66 @@ import axios from "axios";
 import "animate.css";
 
 const MyGroupsPage = () => {
+    const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUserGroups = async () => {
+            try {
+                setLoading(true);
+                const token = localStorage.getItem("token");
+
+                if (!token) {
+                    setUserLoggedIn(false);
+                    setLoading(false);
+                    return;
+                }
+
+                setUserLoggedIn(true);
+                const response = await axios.get("http://localhost:3000/api/studyGroup/groups/user",{}, {
+                    headers: { Authorization:` Bearer ${token}` }});
+                console.log(response);
+
+                setGroups(response.data.groups);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching user groups:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchUserGroups();
+    }, []);
+
+    const leaveGroup = async (groupId) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                alert("Please log in to leave a group.");
+                return;
+            }
+
+            await axios.post(
+               ` http://localhost:3000/api/studyGroup/groups/${groupId}/leave`,
+            {},
+            { headers: { Authorization: `Bearer ${token}`} }
+        );
+
+            alert("Successfully left the group!");
+            setGroups(groups.filter((group) => group._id !== groupId));
+        } catch (error) {
+            console.error("Error leaving group:", error);
+            alert("There was an error leaving the group.");
+        }
+    };
+
+    if (!userLoggedIn) {
+        navigate("/login");
+        return null;
+    }
   
 
   return (
