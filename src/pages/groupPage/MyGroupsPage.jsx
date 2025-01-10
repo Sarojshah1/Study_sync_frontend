@@ -65,6 +65,10 @@ const MyGroupsPage = () => {
         navigate("/login");
         return null;
     }
+
+    const handlechats = (contextId,group_name) => {
+      navigate(`/chats/${contextId}`,{ state: { contextId,group_name } }); 
+    };
   
 
   return (
@@ -95,6 +99,7 @@ const MyGroupsPage = () => {
           {groups.map((group) => (
             <div
               key={group._id}
+              onClick={() => handlechats(group._id,group.group_name)}
               className="bg-white shadow-xl rounded-xl p-6 hover:shadow-2xl transition-transform transform hover:scale-105 relative hover:bg-teal-50 animate__animated animate__fadeInUp"
             >
               <img

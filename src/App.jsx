@@ -16,19 +16,28 @@ import GroupsPage from './pages/groupPage/Groupspage';
 import TermsAndPolicies from './signup/TermsAndPolicies';  
 import Forget from './pages/forget/forget';
 import MyGroupsPage from './pages/groupPage/MyGroupsPage';
-import ProfileSection from './pages/profile/Profile';
+// import ProfileSection from './pages/profile/Profile';
+import Chat from './pages/groupPage/Chats';
+import { useLocation } from 'react-router-dom';
+import VideoCall from './pages/VideoCall/VideoCall';
+import MembersPage from './pages/groupPage/Members';
+import JoinRequestPage from './pages/groupPage/JoinRequest';
 // Layout Component
-const AppLayout = () => (
-    <>
-      <div className="top-0 left-0 w-full z-30">
-        <NavBar />
-      </div>
+const AppLayout = () => {
+  const location = useLocation();
+  const isInExcludedPaths = location.pathname.startsWith('/chats') || location.pathname.startsWith('/call');
+    return(<>
+      {!isInExcludedPaths && (
+        <div className="top-0 left-0 w-full z-30">
+          <NavBar />
+        </div>
+      )}
       <main>
         <Outlet />
       </main>
-      <Footer />
-    </>
-);
+      {!isInExcludedPaths && <Footer />}
+    </>)
+};
 
 // QueryClient for React Query
 const queryClient = new QueryClient();
@@ -85,8 +94,20 @@ const routes = createBrowserRouter([
           element:<MyGroupsPage/>
         },
         {
-          path:"/profile",
-          element:<ProfileSection/>
+          path:"/chats/:contextId",
+          element:<Chat/>
+        },
+        {
+          path: "/call/:contextId",
+          element: <VideoCall/>,
+        },
+        {
+          path: "/members/:contextId",
+          element: <MembersPage/>,
+        },
+        {
+          path: "/joinRequest/:contextId",
+          element: <JoinRequestPage/>,
         },
 
     ],

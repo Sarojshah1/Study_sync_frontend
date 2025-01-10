@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jitsi/react-sdk": "^1.4.0",
     "@tanstack/react-query": "^5.62.15",
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "react": "^18.3.1",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
@@ -23,6 +25,7 @@
     "react-router-dom": "^7.1.1",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.2",
+    "socket.io-client": "^4.8.1",
     "studysync": "file:",
     "tostify": "^0.0.1",
     "yup": "^1.6.1"
