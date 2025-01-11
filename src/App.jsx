@@ -24,6 +24,7 @@ import MembersPage from './pages/groupPage/Members';
 import JoinRequestPage from './pages/groupPage/JoinRequest';
 import ProfileView from './pages/profile/ProfileView';
 import AddProjectPage from './pages/addproject/AddProjectPage';
+import AddGroupPage from './pages/addgroup/AddGroupPage';
 // Layout Component
 const AppLayout = () => {
   const location = useLocation();
@@ -118,6 +119,11 @@ const routes = createBrowserRouter([
         {
           path:"/add-project",
           element:<AddProjectPage/>
+        }
+        ,
+        {
+          path:"/add-group",
+          element:<AddGroupPage/>
         }
 
     ],
