@@ -23,6 +23,7 @@ import VideoCall from './pages/VideoCall/VideoCall';
 import MembersPage from './pages/groupPage/Members';
 import JoinRequestPage from './pages/groupPage/JoinRequest';
 import ProfileView from './pages/profile/ProfileView';
+import AddProjectPage from './pages/addproject/AddProjectPage';
 // Layout Component
 const AppLayout = () => {
   const location = useLocation();
@@ -113,6 +114,10 @@ const routes = createBrowserRouter([
         {
           path:"/profile",
           element:<ProfileView/>
+        },
+        {
+          path:"/add-project",
+          element:<AddProjectPage/>
         }
 
     ],
