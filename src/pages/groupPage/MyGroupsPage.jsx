@@ -124,7 +124,7 @@ const MyGroupsPage = () => {
               </div>
 
               <button
-                className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 w-full mb-4 text-lg font-semibold"
+                className="bg-red-500 text-teal-600 px-6 py-3 rounded-lg hover:bg-red-600 w-full mb-4 text-lg font-semibold"
                 onClick={() => leaveGroup(group._id)}
               >
                 Leave Group
