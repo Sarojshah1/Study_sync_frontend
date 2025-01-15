@@ -10,11 +10,11 @@ const SignUp = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [isAgreed, setIsAgreed] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     address: "",
     bio: "",
-    contactNumber: "",
+    contact_number: "",
     password: "",
     confirmPassword: "",
   });
