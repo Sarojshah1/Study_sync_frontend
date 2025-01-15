@@ -57,6 +57,8 @@ const SignUp = () => {
         formDataObj.append(key, formData[key]);
       });
       formDataObj.append("profile_picture", profileImage);
+      console.log(formDataObj)
+
 
       const response = await axios.post("http://localhost:3000/api/user/register", formDataObj, {
         headers: {
@@ -135,8 +137,8 @@ const SignUp = () => {
                   <label className="block text-gray-700 font-medium mb-2">Full Name</label>
                   <input
                     type="text"
-                    name="fullName"
-                    value={formData.fullName}
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
                     placeholder="John Doe"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
@@ -174,8 +176,8 @@ const SignUp = () => {
                   <label className="block text-gray-700 font-medium mb-2">Contact Number</label>
                   <input
                     type="tel"
-                    name="contactNumber"
-                    value={formData.contactNumber}
+                    name="contact_number"
+                    value={formData.contact_number}
                     onChange={handleInputChange}
                     placeholder="123-456-7890"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"

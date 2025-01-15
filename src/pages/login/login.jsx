@@ -35,7 +35,10 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId",data.userId);
         toast.success("Login successful!");
-      navigate("/")
+        navigate("/")
+        window.location.reload()
+        
+    
 
 
       } else {
