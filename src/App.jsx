@@ -25,6 +25,12 @@ import JoinRequestPage from './pages/groupPage/JoinRequest';
 import ProfileView from './pages/profile/ProfileView';
 import AddProjectPage from './pages/addproject/AddProjectPage';
 import AddGroupPage from './pages/addgroup/AddGroupPage';
+export const isAuthenticated = () => {
+    return !!localStorage.getItem("token"); // Replace "token" with your actual token key
+};
+const PublicRoute = ({ children }) => {
+    return isAuthenticated() ? <Navigate to="/" replace /> : children;
+};
 // Layout Component
 const AppLayout = () => {
   const location = useLocation();
@@ -58,11 +64,19 @@ const routes = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />,
+          element: (
+              <PublicRoute>
+                  <Login />
+              </PublicRoute>
+          ),
       },
       {
         path: '/signup',
-        element: <SignUp />,
+          element: (
+              <PublicRoute>
+                  <SignUp />
+              </PublicRoute>
+          ),
       },
       {
         path: '/about',
