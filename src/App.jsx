@@ -25,6 +25,7 @@ import JoinRequestPage from './pages/groupPage/JoinRequest';
 import ProfileView from './pages/profile/ProfileView';
 import AddProjectPage from './pages/addproject/AddProjectPage';
 import AddGroupPage from './pages/addgroup/AddGroupPage';
+import MyProjectsPage from './pages/addproject/ProjectPage';
 export const isAuthenticated = () => {
     return !!localStorage.getItem("token"); // Replace "token" with your actual token key
 };
@@ -138,6 +139,10 @@ const routes = createBrowserRouter([
         {
           path:"/add-group",
           element:<AddGroupPage/>
+        },
+        {
+          path:"/projects",
+          element:<MyProjectsPage/>
         }
 
     ],
