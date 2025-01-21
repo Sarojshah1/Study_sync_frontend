@@ -12,6 +12,7 @@ const GroupsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // localStorage.clear()
     const fetchChannels = async () => {
       try {
         setLoading(true);

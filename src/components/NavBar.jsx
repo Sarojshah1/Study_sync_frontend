@@ -145,7 +145,7 @@ const NavBar = () => {
                     <span>Your Groups</span>
                   </li>
                   <li
-                      onClick={() => navigate("/projects")}
+                      onClick={() => navigate("/myprojects")}
                       className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
                   >
                     <FaProjectDiagram className="w-5 h-5 text-teal-500"/>

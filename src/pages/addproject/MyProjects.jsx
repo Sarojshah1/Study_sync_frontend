@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
 
-const ProjectsPage = () => {
+const MyProjectsPage = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -48,33 +48,15 @@ const ProjectsPage = () => {
             }, 1000);
 
         };
-        const checkUserStatus = () => {
-            const isLoggedIn = localStorage.getItem("token");
-            setUserLoggedIn(!!isLoggedIn); 
-      
-            if (!isLoggedIn) {
-              setShowModal(true);
-            } else {
-              setShowModal(false);
-            }
-          };
-
-          checkUserStatus();
         fetchUserProjects();
     }, [userLoggedIn]);
-    const closeModal = () => {
-        setShowModal(false);
-        navigate("/"); 
-      };
+    
 
     const handleProjectDetails = (projectId, projectName) => {
         navigate(`/projects/${projectId}`, { state: { projectId, projectName } });
     };
 
-    // if (!userLoggedIn) {
-    //     navigate("/login");
-    //     return null;
-    // }
+    
 
     return (
         <div className="bg-gradient-to-b from-teal-100 to-gray-100 min-h-screen p-6">
@@ -126,48 +108,14 @@ const ProjectsPage = () => {
                                 </p>
                             </div>
 
-                            <button 
-                className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 w-full mb-4 text-lg font-semibold"
-                onClick={() => joinGroup(channel._id)}  
-              >
-                Join Now
-              </button>
-
-              <div className="absolute top-2 right-2 bg-teal-100 text-teal-700 text-sm px-4 py-2 rounded-full shadow-md animate__animated animate__zoomIn">
-                Popular
-              </div>
-            </div>
+                    </div>
                     
                     ))}
                 </div>
             )}
 
-{showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate__animated animate__fadeIn">
-          <div className="bg-white rounded-lg p-8 shadow-2xl max-w-sm w-full text-center">
-            <h2 className="text-3xl font-semibold text-teal-600 mb-6">
-              Join Us!
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Please create an account to access community groups.
-            </p>
-            <button
-              className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 w-full mb-4 text-lg font-bold"
-              onClick={() => (window.location.href = "/signup")}
-            >
-              Sign Up
-            </button>
-            <button
-              className="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-400 w-full text-lg font-bold"
-              onClick={closeModal}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
         </div>
     );
 };
 
-export default ProjectsPage;
+export default MyProjectsPage;
