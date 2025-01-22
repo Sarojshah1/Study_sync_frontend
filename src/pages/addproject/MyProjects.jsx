@@ -53,7 +53,7 @@ const MyProjectsPage = () => {
     
 
     const handleProjectDetails = (projectId, projectName) => {
-        navigate(`/projects/${projectId}`, { state: { projectId, projectName } });
+        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName } });
     };
 
     
