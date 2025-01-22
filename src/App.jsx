@@ -29,6 +29,7 @@ import ProjectsPage from "./pages/addproject/ProjectPage";
 import MyProjectsPage from "./pages/addproject/MyProjects";
 import ProjectOverview from "./pages/addproject/ProjectOverview";
 import TasksPage from "./pages/addproject/Tasks";
+import ResetPassword from "./pages/Reset-Password/ResetPassword";
 export const isAuthenticated = () => {
   return !!localStorage.getItem("token"); // Replace "token" with your actual token key
 };
@@ -127,6 +128,10 @@ const routes = createBrowserRouter([
             <SignUp />
           </PublicRoute>
         ),
+      },
+      {
+        path: "/reset-password", // Add the ResetPassword route here
+        element: <ResetPassword/>,
       },
       {
         path: "/about",
