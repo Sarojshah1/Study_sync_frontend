@@ -52,8 +52,8 @@ const MyProjectsPage = () => {
     }, [userLoggedIn]);
     
 
-    const handleProjectDetails = (projectId, projectName) => {
-        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName } });
+    const handleProjectDetails = (projectId, projectName,description) => {
+        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName,description } });
     };
 
     
@@ -86,7 +86,7 @@ const MyProjectsPage = () => {
                     {projects.map((project) => (
                         <div
                             key={project._id}
-                            onClick={() => handleProjectDetails(project._id, project.name)}
+                            onClick={() => handleProjectDetails(project._id, project.name,project.description)}
                             className="bg-white shadow-xl rounded-xl p-6 hover:shadow-2xl transition-transform transform hover:scale-105 relative hover:bg-teal-50 animate__animated animate__fadeInUp"
                         >
                             <img

@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@jitsi/react-sdk": "^1.4.0",
     "@tanstack/react-query": "^5.62.15",
@@ -17,9 +20,14 @@
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
+    "framer-motion": "^12.0.1",
     "react": "^18.3.1",
+    "react-beautiful-dnd": "^13.1.1",
     "react-calendar": "^5.1.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
+    "react-fireworks": "^1.0.4",
     "react-hook-form": "^7.54.2",
     "react-icons": "^5.4.0",
     "react-router": "^7.1.1",
@@ -29,6 +37,7 @@
     "socket.io-client": "^4.8.1",
     "studysync": "file:",
     "tostify": "^0.0.1",
+    "uuid": "^11.0.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {
