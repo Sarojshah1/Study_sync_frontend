@@ -5,58 +5,54 @@ import "animate.css";
 const MyProjectsPage = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [showModal, setShowModal] = useState(false);
-    const [userLoggedIn, setUserLoggedIn] = useState(true); // Assume user is logged in for dummy data
+    const [error, setError] = useState(null);
+    const [userLoggedIn, setUserLoggedIn] = useState(true);
     const navigate = useNavigate();
-    
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        // Dummy data instead of an API call
         const fetchUserProjects = async () => {
             setLoading(true);
+            setError(null);
 
-            // Simulate delay for fetching data
-            setTimeout(() => {
-                const dummyProjects = [
-                    {
-                        _id: "1",
-                        name: "Project Alpha",
-                        description: "An innovative project solving real-world problems.",
-                        createdBy: { name: "Alice" },
-                        createdAt: new Date().toISOString(),
-                        photo: "dummy-image1.jpg", // Replace with a valid image path if available
+            try {
+                const response = await fetch("http://localhost:3000/api/projects/userProjects", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
                     },
-                    {
-                        _id: "2",
-                        name: "Project Beta",
-                        description: "A collaborative effort to revolutionize technology.",
-                        createdBy: { name: "Bob" },
-                        createdAt: new Date().toISOString(),
-                        photo: "dummy-image2.jpg", // Replace with a valid image path if available
-                    },
-                    {
-                        _id: "3",
-                        name: "Project Gamma",
-                        description: "Breaking barriers in modern science and engineering.",
-                        createdBy: { name: "Charlie" },
-                        createdAt: new Date().toISOString(),
-                        photo: "dummy-image3.jpg", // Replace with a valid image path if available
-                    },
-                ];
-                setProjects(dummyProjects);
+                });
+
+                // Ensure the response is valid before parsing
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+
+                // Parse JSON once
+                const data = await response.json();
+
+                // Debugging log (ensure this is removed in production)
+                console.log(data);
+
+                // Ensure the expected structure of the response
+                setProjects(data.projects || []);
+            } catch (err) {
+                console.error("Failed to fetch projects:", err);
+                setError("Failed to fetch projects. Please try again later.");
+            } finally {
                 setLoading(false);
-            }, 1000);
-
+            }
         };
-        fetchUserProjects();
-    }, [userLoggedIn]);
-    
 
-    const handleProjectDetails = (projectId, projectName,description) => {
-        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName,description } });
+        if (userLoggedIn) {
+            fetchUserProjects();
+        }
+    }, [userLoggedIn, token]);
+
+    const handleProjectDetails = (projectId, projectName, description,image) => {
+        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName, description,image } });
     };
-
-    
 
     return (
         <div className="bg-gradient-to-b from-teal-100 to-gray-100 min-h-screen p-6">
@@ -72,48 +68,47 @@ const MyProjectsPage = () => {
                             <div className="w-10 h-10 bg-teal-600 rounded-full animate-pulse"></div>
                         </div>
                     </div>
-                    <div className="mt-6 flex space-x-4">
-                        <span className="w-4 h-4 bg-teal-600 rounded-full animate-bounce"></span>
-                        <span className="w-4 h-4 bg-teal-500 rounded-full animate-bounce delay-200"></span>
-                        <span className="w-4 h-4 bg-teal-400 rounded-full animate-bounce delay-400"></span>
-                    </div>
                     <p className="text-teal-600 text-lg mt-4 font-semibold animate__animated animate__fadeIn">
                         Loading your projects...
                     </p>
+                </div>
+            ) : error ? (
+                <div className="text-center text-red-500 font-semibold mt-8">
+                    {error}
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project) => (
                         <div
                             key={project._id}
-                            onClick={() => handleProjectDetails(project._id, project.name,project.description)}
+                            onClick={() =>
+                                handleProjectDetails(project._id, project.project_name, project.description,project.image)
+                            }
                             className="bg-white shadow-xl rounded-xl p-6 hover:shadow-2xl transition-transform transform hover:scale-105 relative hover:bg-teal-50 animate__animated animate__fadeInUp"
                         >
                             <img
-                                src={project.photo}
-                                alt={project.name}
+                                src={`http://localhost:3000/${project.image}` || "default-image.jpg"} // Use default image if photo is unavailable
+                                alt={project.project_name}
                                 className="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-teal-600 shadow-lg"
                             />
                             <h2 className="text-2xl font-semibold text-teal-600 mb-4 text-center">
-                                {project.name}
+                                {project.project_name}
                             </h2>
                             <p className="text-gray-600 text-center mb-6">{project.description}</p>
 
                             <div className="mb-6 text-center">
                                 <p className="text-sm text-gray-500">
-                                    <strong>Created By:</strong> {project.createdBy.name}
+                                    <strong>Created By:</strong> {project.created_by.name}
                                 </p>
                                 <p className="text-sm text-gray-500">
-                                    <strong>Created On:</strong> {new Date(project.createdAt).toLocaleDateString()}
+                                    <strong>Created On:</strong>{" "}
+                                    {new Date(project.created_at).toLocaleDateString()}
                                 </p>
                             </div>
-
-                    </div>
-                    
+                        </div>
                     ))}
                 </div>
             )}
-
         </div>
     );
 };

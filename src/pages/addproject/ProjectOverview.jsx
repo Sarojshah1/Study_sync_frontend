@@ -1,19 +1,42 @@
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaTasks, FaUsers, FaCheckCircle, FaBullhorn, FaSyncAlt } from "react-icons/fa";
-import images from '../../assets/images.png';
+import "animate.css";
 
 const ProjectOverview = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const {projectId, projectName, description,image} = location.state;
+
+    // Handle missing state (fallback)
+    if (!projectId) {
+        return (
+            <div className="flex flex-col justify-center items-center min-h-screen">
+                <p className="text-red-600 text-lg font-semibold mb-4">
+                    No project data found. Please go back and select a project.
+                </p>
+                <button
+                    className="px-6 py-2 bg-teal-600 text-white rounded-full shadow-md hover:bg-teal-700 transition-all duration-300"
+                    onClick={() => navigate("/my-projects")}
+                >
+                    Go Back
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-gradient-to-r from-blue-50 via-teal-50 to-gray-100 min-h-screen py-10 px-6">
             <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden">
                 {/* Project Image */}
                 <div className="relative">
                     <img
-                        src={images}
-                        alt="Project Name"
+                        src={`http://localhost:3000/${image}`}
+                        alt={projectName}
                         className="w-full h-96 object-cover"
                     />
                     <div className="absolute top-0 left-0 bg-black bg-opacity-50 text-white w-full h-full flex items-center justify-center">
-                        <h1 className="text-5xl font-bold drop-shadow-lg">Project Name</h1>
+                        <h1 className="text-5xl font-bold drop-shadow-lg">{projectName}</h1>
                     </div>
                 </div>
 
@@ -21,7 +44,7 @@ const ProjectOverview = () => {
                 <div className="p-10">
                     {/* Description */}
                     <p className="text-gray-700 text-lg mb-8 leading-relaxed">
-                        This project focuses on redesigning the company website to enhance user experience and performance. It includes modern UI updates, better performance optimization, and collaboration tools for team efficiency.
+                        {description}
                     </p>
 
                     {/* Additional Details */}
@@ -72,7 +95,7 @@ const ProjectOverview = () => {
                     {/* Footer */}
                     <div className="mt-10 border-t pt-6 text-center">
                         <p className="text-sm text-gray-600">
-                            Project ID: <span className="font-medium text-gray-800">123456</span>
+                            Project ID: <span className="font-medium text-gray-800">{projectId}</span>
                         </p>
                         <button className="mt-4 px-6 py-2 bg-teal-600 text-white rounded-full shadow-md hover:bg-teal-700 transition-all duration-300">
                             Learn More
