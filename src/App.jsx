@@ -30,6 +30,7 @@ import MyProjectsPage from "./pages/addproject/MyProjects";
 import ProjectOverview from "./pages/addproject/ProjectOverview";
 import TasksPage from "./pages/addproject/Tasks";
 import ResetPassword from "./pages/Reset-Password/ResetPassword";
+import ProjectChat from "./pages/addproject/ProjectChats";
 export const isAuthenticated = () => {
   return !!localStorage.getItem("token"); // Replace "token" with your actual token key
 };
@@ -208,7 +209,7 @@ const routes = createBrowserRouter([
           { index: true, element: <ProjectOverview /> },
           { path: "overview", element: <ProjectOverview/> },
           { path: "tasks", element: <TasksPage/>},
-          { path: "chats", element: <Chat /> },
+          { path: "chats", element: <ProjectChat /> },
           { path: "join-requests", element: <JoinRequestPage /> },
         ],
       },
