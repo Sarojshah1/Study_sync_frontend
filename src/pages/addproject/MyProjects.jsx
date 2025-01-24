@@ -50,8 +50,8 @@ const MyProjectsPage = () => {
         }
     }, [userLoggedIn, token]);
 
-    const handleProjectDetails = (projectId, projectName, description,image) => {
-        navigate(`/projects/${projectId}/overview`, { state: { projectId, projectName, description,image } });
+    const handleProjectDetails = (projectId) => {
+        navigate(`/projects/${projectId}/overview`, { state: { projectId} });
     };
 
     return (
@@ -82,12 +82,12 @@ const MyProjectsPage = () => {
                         <div
                             key={project._id}
                             onClick={() =>
-                                handleProjectDetails(project._id, project.project_name, project.description,project.image)
+                                handleProjectDetails(project._id)
                             }
                             className="bg-white shadow-xl rounded-xl p-6 hover:shadow-2xl transition-transform transform hover:scale-105 relative hover:bg-teal-50 animate__animated animate__fadeInUp"
                         >
                             <img
-                                src={`http://localhost:3000/${project.image}` || "default-image.jpg"} // Use default image if photo is unavailable
+                                src={`http://localhost:3000/${project.image}`} 
                                 alt={project.project_name}
                                 className="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-teal-600 shadow-lg"
                             />

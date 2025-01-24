@@ -21,7 +21,7 @@ const AddProjectPage = () => {
     formData.append("project_name", projectName);
     formData.append("description", projectDescription);
     if (projectImage) {
-      formData.append("projectPhoto", projectImage); // Append the file to the form data
+      formData.append("projectPhoto", projectImage); 
     }
 
     try {
